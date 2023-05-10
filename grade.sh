@@ -19,7 +19,7 @@ echo 'Finished cloning'
 submittedFile=`find student-submission -name "ListExamples.java"`
 echo $submittedFile
 
-if [ "$submittedFile" = "student-submission/ListExamples.java" ]; then
+if [[ "$submittedFile" =~ "ListExamples.java" ]]; then
     echo "Correct file submitted!"
 else
     echo "Incorrect file submitted."
@@ -27,7 +27,7 @@ else
 fi
 
 cp *.java grading-area/
-cp student-submission/*.java grading-area/
+cp $submittedFile grading-area/
 cp lib/* grading-area/
 
 javac -classpath grading-area/\* grading-area/*.java
