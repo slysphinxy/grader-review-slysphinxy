@@ -16,10 +16,10 @@ echo 'Finished cloning'
 # tests
 
 
-submittedFile=`ls student-submission`
+submittedFile=`find student-submission -name "ListExamples.java"`
 echo $submittedFile
 
-if [ "$submittedFile" = "ListExamples.java" ]; then
+if [ "$submittedFile" = "student-submission/ListExamples.java" ]; then
     echo "Correct file submitted!"
 else
     echo "Incorrect file submitted."
