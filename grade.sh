@@ -31,4 +31,16 @@ cp student-submission/*.java grading-area/
 cp lib/* grading-area/
 
 javac -classpath grading-area/\* grading-area/*.java
-java -cp ".;grading-area/junit-4.13.2.jar;grading-area/hamcrest-core-1.3.jar;grading-area/*.java" org.junit.runner.JUnitCore grading-area/TestListExamples > grading-area/gradeResults.txt
+
+cd grading-area
+java -cp ".;junit-4.13.2.jar;hamcrest-core-1.3.jar;grading-area/*.java" org.junit.runner.JUnitCore TestListExamples > JUnitOutput.txt
+
+pass=`grep "OK (" JUnitOutput.txt`
+
+if [ "$pass" = "" ]; then
+    echo "Not all tests pass, FAIL."
+    exit 1
+else
+    echo "All tests pass, Success."
+    exit 0
+fi
