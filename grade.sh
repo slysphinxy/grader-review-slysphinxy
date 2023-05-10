@@ -15,7 +15,6 @@ echo 'Finished cloning'
 # Then, add here code to compile and run, and do any post-processing of the
 # tests
 
-
 submittedFile=`find student-submission -name "ListExamples.java"`
 echo $submittedFile
 
@@ -33,14 +32,14 @@ cp lib/* grading-area/
 javac -classpath grading-area/\* grading-area/*.java
 
 cd grading-area
-java -cp ".;junit-4.13.2.jar;hamcrest-core-1.3.jar;grading-area/*.java" org.junit.runner.JUnitCore TestListExamples > JUnitOutput.txt
+java -cp ".;junit-4.13.2.jar;hamcrest-core-1.3.jar;/*.java" org.junit.runner.JUnitCore TestListExamples > JUnitOutput.txt
 
-pass=`grep "OK (" JUnitOutput.txt`
+fail=`grep "FAIL" JUnitOutput.txt`
 
-if [ "$pass" = "" ]; then
+if [ "$fail" = "FAILURES!!!" ]; then
     echo "Not all tests pass, FAIL."
     exit 1
 else
-    echo "All tests pass, Success."
+    echo "All tests pass, PASS."
     exit 0
 fi
